@@ -1,4 +1,4 @@
-package com.alperozturk.ilovemovies
+package com.alperozturk.ilovemovies.core
 
 import android.content.Context
 import androidx.lifecycle.ViewModelProvider
@@ -11,6 +11,8 @@ import android.view.ViewGroup
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
+import com.alperozturk.ilovemovies.R
+import com.alperozturk.ilovemovies.models.viewmodels.MovieDetailViewModel
 
 class MovieDetail : Fragment(),LifecycleObserver {
 

@@ -3,11 +3,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/movieDetail">
+    app:startDestination="@id/moviePList">
 
     <fragment
         android:id="@+id/movieDetail"
-        android:name="com.alperozturk.ilovemovies.MovieDetail"
+        android:name="com.alperozturk.ilovemovies.core.MovieDetail"
         android:label="movie_detail_fragment"
         tools:layout="@layout/movie_detail_fragment" />
+
+    <fragment
+        android:id="@+id/moviePList"
+        android:name="com.alperozturk.ilovemovies.core.PopularMoviesList"
+        android:label="fragment_movie_p_list"
+        tools:layout="@layout/popular_movie_list_fragment" >
+        <action
+            android:id="@+id/action_moviePList_to_movieDetail"
+            app:destination="@id/movieDetail" />
+    </fragment>
+
 </navigation>

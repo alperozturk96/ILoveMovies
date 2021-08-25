@@ -1,4 +1,4 @@
-package com.alperozturk.ilovemovies.core
+package com.alperozturk.ilovemovies.models.viewmodels
 
 import androidx.lifecycle.*
 import androidx.paging.PagingData

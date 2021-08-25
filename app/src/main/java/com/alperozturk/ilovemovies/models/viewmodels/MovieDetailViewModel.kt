@@ -1,4 +1,4 @@
-package com.alperozturk.ilovemovies
+package com.alperozturk.ilovemovies.models.viewmodels
 
 import androidx.lifecycle.ViewModel
 
