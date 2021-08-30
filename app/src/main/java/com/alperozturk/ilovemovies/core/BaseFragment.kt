@@ -14,6 +14,9 @@ import retrofit2.Retrofit
 
 typealias Inflate<T> = (LayoutInflater, ViewGroup?, Boolean) -> T
 
+//Due to using navigation ui library we need to have base abstract fragment for using viewbindings all over the app.
+//And some needed functions all over the app.
+
 abstract class BaseFragment<VB: ViewBinding>(private val inflate: Inflate<VB>) : Fragment() {
 
     private var _binding: VB? = null
@@ -33,12 +36,10 @@ abstract class BaseFragment<VB: ViewBinding>(private val inflate: Inflate<VB>) :
         _binding = null
     }
 
-
     open fun retroFitClient(): IRest {
         val retrofit: Retrofit = ApiClient.client()
         return retrofit.create(IRest::class.java)
     }
-
 
     open fun createWithFactory(create: () -> ViewModel): ViewModelProvider.Factory {
         return object : ViewModelProvider.Factory {
@@ -48,4 +49,5 @@ abstract class BaseFragment<VB: ViewBinding>(private val inflate: Inflate<VB>) :
             }
         }
     }
+
 }

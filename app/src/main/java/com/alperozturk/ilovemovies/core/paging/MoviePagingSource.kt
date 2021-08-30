@@ -5,6 +5,8 @@ import androidx.paging.PagingState
 import com.alperozturk.ilovemovies.models.response.PopularMoviesM
 import com.alperozturk.ilovemovies.networklayer.IRest
 
+//This class is responsible for fetching data page by page.
+
 class MoviePagingSource(private val service: IRest) : PagingSource<Int, PopularMoviesM>() {
     private fun toListResponse(json: List<PopularMoviesM>?): List<PopularMoviesM> {
         with(json) {

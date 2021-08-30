@@ -12,11 +12,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.alperozturk.ilovemovies.R
 import com.alperozturk.ilovemovies.databinding.PopularMoviesListItemBinding
 import com.alperozturk.ilovemovies.helpers.AppConsts
+import com.alperozturk.ilovemovies.helpers.ViewHolder.listen
 import com.alperozturk.ilovemovies.models.response.PopularMoviesBaseM
 import com.alperozturk.ilovemovies.models.response.PopularMoviesM
 import com.bumptech.glide.Glide
 
 class PopularMoviesAdapter() : PagingDataAdapter<PopularMoviesM, PopularMoviesAdapter.ViewHolder>(DiffUtilCallBack) {
+
+    var onItemClick: ((PopularMoviesM) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = PopularMoviesListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -45,6 +48,14 @@ class PopularMoviesAdapter() : PagingDataAdapter<PopularMoviesM, PopularMoviesAd
                     .into(thumbnail)
             }
         }
+
+        init {
+            binding.llMovie.setOnClickListener {
+                onItemClick?.invoke(getItem(adapterPosition)!!)
+            }
+        }
+
+
     }
 
     object DiffUtilCallBack : DiffUtil.ItemCallback<PopularMoviesM>() {

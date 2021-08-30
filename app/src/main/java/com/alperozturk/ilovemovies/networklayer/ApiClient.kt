@@ -2,18 +2,40 @@ package com.alperozturk.ilovemovies.networklayer
 
 import com.alperozturk.ilovemovies.helpers.AppConsts
 import retrofit2.Retrofit
-import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.jackson.JacksonConverterFactory
+import okhttp3.logging.HttpLoggingInterceptor
 
+import okhttp3.OkHttpClient
+
+import okhttp3.Interceptor
+import okhttp3.Request
+import java.util.concurrent.TimeUnit
+
+
+//Object acts like singleton class and its suitable for Retrofit Networking Library.
 object ApiClient {
     private var retrofit: Retrofit? = null
+
+    //This functions provide to us watch network request from log.
+    private fun httpClient(): OkHttpClient.Builder {
+        val httpClient = OkHttpClient.Builder()
+        httpClient.connectTimeout(30, TimeUnit.SECONDS)
+        httpClient.readTimeout(30, TimeUnit.SECONDS)
+        httpClient.addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+        httpClient.addInterceptor(Interceptor { chain: Interceptor.Chain ->
+            val request: Request = chain.request().newBuilder()
+                .build()
+            chain.proceed(request)
+        })
+        return httpClient
+    }
 
     fun client(): Retrofit {
         if (retrofit == null)
             retrofit =
                 Retrofit.Builder()
                     .baseUrl(AppConsts.baseUrl)
-                    .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
+                    .client(httpClient().build())
                     .addConverterFactory(JacksonConverterFactory.create()).build()
 
         return retrofit as Retrofit
