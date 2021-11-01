@@ -14,16 +14,16 @@ class MovieDetailVM(service:IRest) : ViewModel() {
 
     private val repository = MovieDetailRepository(service)
 
-    init {
-
-    }
-
     fun movieDetail(movieId: String): MutableLiveData<ResultWrapper<MovieDetailBaseM>> {
         return repository.getMovieDetail(movieId)
     }
 
     fun movieCredits(movieId: String): MutableLiveData<ResultWrapper<MovieCreditsBaseM>> {
         return repository.getMovieCredits(movieId)
+    }
+
+    fun disposeAll(){
+        repository.finish()
     }
 
 }

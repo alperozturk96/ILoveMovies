@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 object ViewHolder {
     fun <T : RecyclerView.ViewHolder> T.listen(event: (position: Int, type: Int) -> Unit): T {
         itemView.setOnClickListener {
-            event.invoke(adapterPosition, itemViewType)
+            event.invoke(bindingAdapterPosition, itemViewType)
         }
         return this
     }

@@ -6,7 +6,6 @@ import androidx.core.os.bundleOf
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.alperozturk.ilovemovies.R
 import com.alperozturk.ilovemovies.adapters.PopularMoviesAdapter
 import com.alperozturk.ilovemovies.viewmodels.PopularMoviesVM
@@ -18,6 +17,7 @@ import com.alperozturk.ilovemovies.helpers.Coroutines
 class PopularMoviesList : BaseFragment<PopularMovieListFragmentBinding>(PopularMovieListFragmentBinding::inflate){
 
     var navController:NavController? = null
+    private val adapter = PopularMoviesAdapter()
 
     private val viewModel: PopularMoviesVM by lazy {
         ViewModelProvider(this, createWithFactory { PopularMoviesVM(repository = MovieRepositoryImpl(retroFitClient())) }).get(
@@ -27,7 +27,9 @@ class PopularMoviesList : BaseFragment<PopularMovieListFragmentBinding>(PopularM
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
-        preparePopularMovieList()
+
+        initAdapter()
+        observeLiveData()
     }
 
     private fun openMovieDetailPage(id:String){
@@ -35,16 +37,15 @@ class PopularMoviesList : BaseFragment<PopularMovieListFragmentBinding>(PopularM
         navController!!.navigate(R.id.action_moviePList_to_movieDetail,bundle)
     }
 
-    private fun preparePopularMovieList(){
-        val adapter = PopularMoviesAdapter()
+    private fun initAdapter(){
         binding.popularMovieListRecV.adapter = adapter
 
         adapter.onItemClick = { data ->
             openMovieDetailPage(data.id.toString())
         }
+    }
 
-        binding.popularMovieListRecV.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-
+    private fun observeLiveData(){
         Coroutines.main {
             viewModel.getPopularMoviesList().observe(viewLifecycleOwner, {
                 adapter.submitData(lifecycle, it)

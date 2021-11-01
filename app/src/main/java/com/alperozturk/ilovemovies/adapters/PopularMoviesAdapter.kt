@@ -17,7 +17,7 @@ import com.alperozturk.ilovemovies.models.response.PopularMoviesBaseM
 import com.alperozturk.ilovemovies.models.response.PopularMoviesM
 import com.bumptech.glide.Glide
 
-class PopularMoviesAdapter() : PagingDataAdapter<PopularMoviesM, PopularMoviesAdapter.ViewHolder>(DiffUtilCallBack) {
+class PopularMoviesAdapter : PagingDataAdapter<PopularMoviesM, PopularMoviesAdapter.ViewHolder>(DiffUtilCallBack) {
 
     var onItemClick: ((PopularMoviesM) -> Unit)? = null
 
@@ -51,7 +51,7 @@ class PopularMoviesAdapter() : PagingDataAdapter<PopularMoviesM, PopularMoviesAd
 
         init {
             binding.llMovie.setOnClickListener {
-                onItemClick?.invoke(getItem(adapterPosition)!!)
+                onItemClick?.invoke(getItem(bindingAdapterPosition)!!)
             }
         }
 

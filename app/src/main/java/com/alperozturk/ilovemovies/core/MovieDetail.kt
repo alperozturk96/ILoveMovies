@@ -80,4 +80,9 @@ class MovieDetail : BaseFragment<MovieDetailFragmentBinding>(MovieDetailFragment
             .into(binding.movieThumbnail)
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        viewModel.disposeAll()
+    }
+
 }

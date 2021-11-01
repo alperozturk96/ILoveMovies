@@ -39,14 +39,12 @@ class MoviePagingSource(private val service: IRest) : PagingSource<Int, PopularM
 
         return try
         {
-            BaseFragment.showProgressBar()
             val jsonResponse = APICall.run {
                 service.getPopularMovies(page = page.toString())
             }
 
             when (jsonResponse) {
                 is ResultWrapper.Success -> {
-                    BaseFragment.hideProgressBar()
                     val response = toListResponse( jsonResponse.value.results)
                     LoadResult.Page(
                         data = response,
@@ -55,7 +53,6 @@ class MoviePagingSource(private val service: IRest) : PagingSource<Int, PopularM
                     )
                 }
                 is ResultWrapper.GenericError -> {
-                    BaseFragment.hideProgressBar()
                     val exception = jsonResponse.error
                     LoadResult.Error(exception!!)
                 }

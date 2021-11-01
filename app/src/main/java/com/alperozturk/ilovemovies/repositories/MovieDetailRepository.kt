@@ -10,14 +10,18 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import com.alperozturk.ilovemovies.models.response.MovieDetailBaseM
 import com.alperozturk.ilovemovies.networklayer.IRest
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.disposables.Disposable
 
 
 class MovieDetailRepository(private val service: IRest) {
 
+    var movieDetailDisposable: Disposable? = null
+    var movieCreditsDisposable: Disposable? = null
+
     fun getMovieDetail(movieId: String): MutableLiveData<ResultWrapper<MovieDetailBaseM>> {
         val liveData = MutableLiveData<ResultWrapper<MovieDetailBaseM>>()
 
-        service.getMovieDetail(movieId)
+        movieDetailDisposable = service.getMovieDetail(movieId)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .map { response -> response }
@@ -33,7 +37,7 @@ class MovieDetailRepository(private val service: IRest) {
     fun getMovieCredits(movieId: String): MutableLiveData<ResultWrapper<MovieCreditsBaseM>> {
         val liveData = MutableLiveData<ResultWrapper<MovieCreditsBaseM>>()
 
-        service.getMovieCredits(movieId)
+        movieCreditsDisposable = service.getMovieCredits(movieId)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .map { response -> response }
@@ -44,5 +48,10 @@ class MovieDetailRepository(private val service: IRest) {
             }
 
         return liveData
+    }
+
+    fun finish(){
+        movieDetailDisposable?.dispose()
+        movieCreditsDisposable?.dispose()
     }
 }
