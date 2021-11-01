@@ -1,141 +1,126 @@
 package com.alperozturk.ilovemovies.models.response
 
-import com.fasterxml.jackson.annotation.JsonProperty
+import com.google.gson.annotations.SerializedName
 
 data class MovieDetailBaseM(
 
-	@field:JsonProperty("original_language")
+	@field:SerializedName("original_language")
 	val originalLanguage: String? = null,
 
-	@field:JsonProperty("imdb_id")
+	@field:SerializedName("imdb_id")
 	val imdbId: String? = null,
 
-	@field:JsonProperty("video")
+	@field:SerializedName("video")
 	val video: Boolean? = null,
 
-	@field:JsonProperty("title")
+	@field:SerializedName("title")
 	val title: String? = null,
 
-	@field:JsonProperty("backdrop_path")
+	@field:SerializedName("backdrop_path")
 	val backdropPath: String? = null,
 
-	@field:JsonProperty("revenue")
+	@field:SerializedName("revenue")
 	val revenue: Int? = null,
 
-	@field:JsonProperty("genres")
+	@field:SerializedName("genres")
 	val genres: List<GenresItem?>? = null,
 
-	@field:JsonProperty("popularity")
+	@field:SerializedName("popularity")
 	val popularity: Double? = null,
 
-	@field:JsonProperty("production_countries")
+	@field:SerializedName("production_countries")
 	val productionCountries: List<ProductionCountriesItem?>? = null,
 
-	@field:JsonProperty("id")
+	@field:SerializedName("id")
 	val id: Int? = null,
 
-	@field:JsonProperty("vote_count")
+	@field:SerializedName("vote_count")
 	val voteCount: Int? = null,
 
-	@field:JsonProperty("budget")
+	@field:SerializedName("budget")
 	val budget: Int? = null,
 
-	@field:JsonProperty("overview")
+	@field:SerializedName("overview")
 	val overview: String? = null,
 
-	@field:JsonProperty("original_title")
+	@field:SerializedName("original_title")
 	val originalTitle: String? = null,
 
-	@field:JsonProperty("runtime")
+	@field:SerializedName("runtime")
 	val runtime: Int? = null,
 
-	@field:JsonProperty("poster_path")
+	@field:SerializedName("poster_path")
 	val posterPath: String? = null,
 
-	@field:JsonProperty("spoken_languages")
+	@field:SerializedName("spoken_languages")
 	val spokenLanguages: List<SpokenLanguagesItem?>? = null,
 
-	@field:JsonProperty("production_companies")
+	@field:SerializedName("production_companies")
 	val productionCompanies: List<ProductionCompaniesItem?>? = null,
 
-	@field:JsonProperty("release_date")
+	@field:SerializedName("release_date")
 	val releaseDate: String? = null,
 
-	@field:JsonProperty("vote_average")
+	@field:SerializedName("vote_average")
 	val voteAverage: Double? = null,
 
-	@field:JsonProperty("belongs_to_collection")
-	val belongsToCollection: BelongsToCollection? = null,
+	@field:SerializedName("belongs_to_collection")
+	val belongsToCollection: Any? = null,
 
-	@field:JsonProperty("tagline")
+	@field:SerializedName("tagline")
 	val tagline: String? = null,
 
-	@field:JsonProperty("adult")
+	@field:SerializedName("adult")
 	val adult: Boolean? = null,
 
-	@field:JsonProperty("homepage")
+	@field:SerializedName("homepage")
 	val homepage: String? = null,
 
-	@field:JsonProperty("status")
+	@field:SerializedName("status")
 	val status: String? = null
-)
-
-data class BelongsToCollection(
-
-	@field:JsonProperty("backdrop_path")
-	val backdropPath: String? = null,
-
-	@field:JsonProperty("name")
-	val name: String? = null,
-
-	@field:JsonProperty("id")
-	val id: Int? = null,
-
-	@field:JsonProperty("poster_path")
-	val posterPath: String? = null
-)
-
-data class ProductionCompaniesItem(
-
-	@field:JsonProperty("logo_path")
-	val logoPath: String? = null,
-
-	@field:JsonProperty("name")
-	val name: String? = null,
-
-	@field:JsonProperty("id")
-	val id: Int? = null,
-
-	@field:JsonProperty("origin_country")
-	val originCountry: String? = null
-)
-
-data class GenresItem(
-
-	@field:JsonProperty("name")
-	val name: String? = null,
-
-	@field:JsonProperty("id")
-	val id: Int? = null
-)
-
-data class SpokenLanguagesItem(
-
-	@field:JsonProperty("name")
-	val name: String? = null,
-
-	@field:JsonProperty("iso_639_1")
-	val iso6391: String? = null,
-
-	@field:JsonProperty("english_name")
-	val englishName: String? = null
 )
 
 data class ProductionCountriesItem(
 
-	@field:JsonProperty("iso_3166_1")
+	@field:SerializedName("iso_3166_1")
 	val iso31661: String? = null,
 
-	@field:JsonProperty("name")
+	@field:SerializedName("name")
 	val name: String? = null
+)
+
+data class SpokenLanguagesItem(
+
+	@field:SerializedName("name")
+	val name: String? = null,
+
+	@field:SerializedName("iso_639_1")
+	val iso6391: String? = null,
+
+	@field:SerializedName("english_name")
+	val englishName: String? = null
+)
+
+data class GenresItem(
+
+	@field:SerializedName("name")
+	val name: String? = null,
+
+	@field:SerializedName("id")
+	val id: Int? = null
+)
+
+data class ProductionCompaniesItem(
+
+	@field:SerializedName("logo_path")
+	val logoPath: Any? = null,
+
+	@field:SerializedName("name")
+	val name: String? = null,
+
+	@field:SerializedName("id")
+	val id: Int? = null,
+
+	@field:SerializedName("origin_country")
+	val originCountry: String? = null
 )

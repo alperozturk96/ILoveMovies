@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:gravity="center"
+    android:background="@android:color/transparent"
+    android:clickable="true"
+    android:layout_height="match_parent"
+    android:focusable="true">
+
+    <ProgressBar
+        android:id="@+id/progressBarBase"
+        style="?android:attr/progressBarStyle"
+        android:background="@android:color/transparent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:clickable="true"
+        android:indeterminate="true"
+        android:indeterminateTint="@color/purple_200"
+        android:indeterminateTintMode="src_atop"
+        android:visibility="visible"
+        android:focusable="true" />
+
+</LinearLayout>

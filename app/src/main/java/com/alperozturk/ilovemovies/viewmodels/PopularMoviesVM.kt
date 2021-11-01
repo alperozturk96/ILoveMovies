@@ -1,9 +1,9 @@
-package com.alperozturk.ilovemovies.models.viewmodels
+package com.alperozturk.ilovemovies.viewmodels
 
 import androidx.lifecycle.*
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.alperozturk.ilovemovies.models.repositories.MovieRepository
+import com.alperozturk.ilovemovies.repositories.MovieRepository
 import com.alperozturk.ilovemovies.models.response.PopularMoviesM
 
 class PopularMoviesVM(private val repository: MovieRepository) : ViewModel() {

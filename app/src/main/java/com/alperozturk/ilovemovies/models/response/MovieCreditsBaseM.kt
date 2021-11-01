@@ -1,91 +1,90 @@
 package com.alperozturk.ilovemovies.models.response
 
-import com.fasterxml.jackson.annotation.JsonProperty
+import com.google.gson.annotations.SerializedName
 
-//All responses are generated for Jackson JSON Decoder which is fastest JSON Decoder. Moshi and Gson are other options.
 data class MovieCreditsBaseM(
 
-	@field:JsonProperty("cast")
+	@field:SerializedName("cast")
 	val cast: List<CastItem?>? = null,
 
-	@field:JsonProperty("id")
+	@field:SerializedName("id")
 	val id: Int? = null,
 
-	@field:JsonProperty("crew")
+	@field:SerializedName("crew")
 	val crew: List<CrewItem?>? = null
-)
-
-data class CastItem(
-
-	@field:JsonProperty("cast_id")
-	val castId: Int? = null,
-
-	@field:JsonProperty("character")
-	val character: String? = null,
-
-	@field:JsonProperty("gender")
-	val gender: Int? = null,
-
-	@field:JsonProperty("credit_id")
-	val creditId: String? = null,
-
-	@field:JsonProperty("known_for_department")
-	val knownForDepartment: String? = null,
-
-	@field:JsonProperty("original_name")
-	val originalName: String? = null,
-
-	@field:JsonProperty("popularity")
-	val popularity: Double? = null,
-
-	@field:JsonProperty("name")
-	val name: String? = null,
-
-	@field:JsonProperty("profile_path")
-	val profilePath: String? = null,
-
-	@field:JsonProperty("id")
-	val id: Int? = null,
-
-	@field:JsonProperty("adult")
-	val adult: Boolean? = null,
-
-	@field:JsonProperty("order")
-	val order: Int? = null
 )
 
 data class CrewItem(
 
-	@field:JsonProperty("gender")
+	@field:SerializedName("gender")
 	val gender: Int? = null,
 
-	@field:JsonProperty("credit_id")
+	@field:SerializedName("credit_id")
 	val creditId: String? = null,
 
-	@field:JsonProperty("known_for_department")
+	@field:SerializedName("known_for_department")
 	val knownForDepartment: String? = null,
 
-	@field:JsonProperty("original_name")
+	@field:SerializedName("original_name")
 	val originalName: String? = null,
 
-	@field:JsonProperty("popularity")
+	@field:SerializedName("popularity")
 	val popularity: Double? = null,
 
-	@field:JsonProperty("name")
+	@field:SerializedName("name")
 	val name: String? = null,
 
-	@field:JsonProperty("profile_path")
+	@field:SerializedName("profile_path")
 	val profilePath: String? = null,
 
-	@field:JsonProperty("id")
+	@field:SerializedName("id")
 	val id: Int? = null,
 
-	@field:JsonProperty("adult")
+	@field:SerializedName("adult")
 	val adult: Boolean? = null,
 
-	@field:JsonProperty("department")
+	@field:SerializedName("department")
 	val department: String? = null,
 
-	@field:JsonProperty("job")
+	@field:SerializedName("job")
 	val job: String? = null
+)
+
+data class CastItem(
+
+	@field:SerializedName("cast_id")
+	val castId: Int? = null,
+
+	@field:SerializedName("character")
+	val character: String? = null,
+
+	@field:SerializedName("gender")
+	val gender: Int? = null,
+
+	@field:SerializedName("credit_id")
+	val creditId: String? = null,
+
+	@field:SerializedName("known_for_department")
+	val knownForDepartment: String? = null,
+
+	@field:SerializedName("original_name")
+	val originalName: String? = null,
+
+	@field:SerializedName("popularity")
+	val popularity: Double? = null,
+
+	@field:SerializedName("name")
+	val name: String? = null,
+
+	@field:SerializedName("profile_path")
+	val profilePath: String? = null,
+
+	@field:SerializedName("id")
+	val id: Int? = null,
+
+	@field:SerializedName("adult")
+	val adult: Boolean? = null,
+
+	@field:SerializedName("order")
+	val order: Int? = null
 )

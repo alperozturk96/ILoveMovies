@@ -9,8 +9,8 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alperozturk.ilovemovies.R
 import com.alperozturk.ilovemovies.adapters.PopularMoviesAdapter
-import com.alperozturk.ilovemovies.models.viewmodels.PopularMoviesVM
-import com.alperozturk.ilovemovies.models.repositories.MovieRepositoryImpl
+import com.alperozturk.ilovemovies.viewmodels.PopularMoviesVM
+import com.alperozturk.ilovemovies.repositories.MovieRepositoryImpl
 import com.alperozturk.ilovemovies.databinding.PopularMovieListFragmentBinding
 import com.alperozturk.ilovemovies.helpers.Coroutines
 
@@ -29,7 +29,6 @@ class PopularMoviesList : BaseFragment<PopularMovieListFragmentBinding>(PopularM
         navController = Navigation.findNavController(view)
         preparePopularMovieList()
     }
-
 
     private fun openMovieDetailPage(id:String){
         val bundle = bundleOf("movieId" to id)

@@ -4,25 +4,34 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.lifecycle.LifecycleObserver
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.lifecycle.ViewModelProvider
 import com.alperozturk.ilovemovies.adapters.CreditsAdapter
 import com.alperozturk.ilovemovies.databinding.MovieDetailFragmentBinding
 import com.alperozturk.ilovemovies.helpers.AppConsts
 import com.alperozturk.ilovemovies.helpers.Coroutines
 import com.alperozturk.ilovemovies.models.response.MovieCreditsBaseM
 import com.alperozturk.ilovemovies.models.response.MovieDetailBaseM
-import com.alperozturk.ilovemovies.networklayer.Success
+import com.alperozturk.ilovemovies.networklayer.APICall
+import com.alperozturk.ilovemovies.networklayer.ResultWrapper
+import com.alperozturk.ilovemovies.viewmodels.MovieDetailVM
+
 import com.bumptech.glide.Glide
-import kotlinx.coroutines.CoroutineExceptionHandler
-import retrofit2.HttpException
+
 
 class MovieDetail : BaseFragment<MovieDetailFragmentBinding>(MovieDetailFragmentBinding::inflate),LifecycleObserver {
 
     private lateinit var movieId:String
 
+    private val viewModel: MovieDetailVM by lazy {
+        ViewModelProvider(
+            this,
+            createWithFactory { MovieDetailVM(retroFitClient()) })[MovieDetailVM::class.java]
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        prepareMovieDetail()
+
+        observeLiveData()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,35 +39,45 @@ class MovieDetail : BaseFragment<MovieDetailFragmentBinding>(MovieDetailFragment
         movieId = requireArguments().getString("movieId")!!
     }
 
-    //While fetching movie detail there is no error handling, i don't like existed solution on the internet
-    //Error handling can be using some helper classes or basically using try catch but its not the optimal solution.
-    private fun prepareMovieDetail(){
-        Coroutines.main {
-            fetchMovieDetail()
-            fetchMovieCredits()
-        }
+    private fun observeLiveData(){
+        viewModel.movieDetail(movieId).observe(viewLifecycleOwner, {
+            when(it) {
+                is ResultWrapper.Success -> {
+                    prepareMovieDetails(it.value)
+                }
+                is ResultWrapper.GenericError -> {
+                    Log.d("","error caught at prepareMovieDetails: ${it.error}")
+                }
+            }
+        })
+
+        viewModel.movieCredits(movieId).observe(viewLifecycleOwner, {
+            when(it) {
+                is ResultWrapper.Success -> {
+                    prepareMovieCredits(it.value)
+                }
+                is ResultWrapper.GenericError -> {
+                    Log.d("","error caught at prepareMovieCredits: ${it.error}")
+                }
+            }
+        })
     }
 
-    private suspend fun fetchMovieCredits(){
-        val response = retroFitClient().getMovieCredits(movieId)
-
-        val adapterForCast = CreditsAdapter(response,true)
-        val adapterForCrew = CreditsAdapter(response,false)
+    private fun prepareMovieCredits(movieCredits: MovieCreditsBaseM){
+        val adapterForCast = CreditsAdapter(movieCredits,true)
+        val adapterForCrew = CreditsAdapter(movieCredits,false)
 
         binding.recVCast.adapter = adapterForCast
         binding.recVCrew.adapter = adapterForCrew
     }
 
-    private suspend fun fetchMovieDetail(){
-        val response = retroFitClient().getMovieDetail(movieId)
-
-        binding.movieTitle.text = response.title
-        binding.movieDescription.text = response.overview
+    private fun prepareMovieDetails(movieDetail:MovieDetailBaseM){
+        binding.movieTitle.text = movieDetail.title
+        binding.movieDescription.text = movieDetail.overview
         Glide.with(requireContext())
-            .load(AppConsts.imageBaseUrl + response.posterPath)
+            .load(AppConsts.imageBaseUrl + movieDetail.posterPath)
             .override(200,250)
             .into(binding.movieThumbnail)
     }
-
 
 }

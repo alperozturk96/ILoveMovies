@@ -1,4 +1,4 @@
-package com.alperozturk.ilovemovies.models.repositories
+package com.alperozturk.ilovemovies.repositories
 
 import androidx.lifecycle.LiveData;
 import androidx.paging.Pager
