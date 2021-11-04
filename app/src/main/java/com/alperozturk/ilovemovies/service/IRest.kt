@@ -1,16 +1,14 @@
-package com.alperozturk.ilovemovies.networklayer
+package com.alperozturk.ilovemovies.service
 
 
-import com.alperozturk.ilovemovies.helpers.AppConsts
-import com.alperozturk.ilovemovies.models.response.MovieCreditsBaseM
-import com.alperozturk.ilovemovies.models.response.MovieDetailBaseM
-import com.alperozturk.ilovemovies.models.response.PopularMoviesBaseM
-import io.reactivex.rxjava3.core.Observable
+import com.alperozturk.ilovemovies.utils.AppConsts
+import com.alperozturk.ilovemovies.model.response.MovieCreditsBaseM
+import com.alperozturk.ilovemovies.model.response.MovieDetailBaseM
+import com.alperozturk.ilovemovies.model.response.PopularMoviesBaseM
 import io.reactivex.rxjava3.core.Single
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
-import java.util.*
 
 interface IRest {
 

@@ -1,4 +1,4 @@
-package com.alperozturk.ilovemovies.helpers
+package com.alperozturk.ilovemovies.utils
 
 import androidx.recyclerview.widget.RecyclerView
 

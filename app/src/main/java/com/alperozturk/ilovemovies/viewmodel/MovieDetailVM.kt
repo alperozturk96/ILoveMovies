@@ -1,14 +1,14 @@
-package com.alperozturk.ilovemovies.viewmodels
+package com.alperozturk.ilovemovies.viewmodel
 
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.alperozturk.ilovemovies.models.response.MovieCreditsBaseM
-import com.alperozturk.ilovemovies.models.response.MovieDetailBaseM
-import com.alperozturk.ilovemovies.networklayer.IRest
-import com.alperozturk.ilovemovies.networklayer.ResultWrapper
+import com.alperozturk.ilovemovies.model.response.MovieCreditsBaseM
+import com.alperozturk.ilovemovies.model.response.MovieDetailBaseM
+import com.alperozturk.ilovemovies.service.IRest
+import com.alperozturk.ilovemovies.service.ResultWrapper
 
-import com.alperozturk.ilovemovies.repositories.MovieDetailRepository
+import com.alperozturk.ilovemovies.repository.MovieDetailRepository
 
 
 class MovieDetailVM(service:IRest) : ViewModel() {

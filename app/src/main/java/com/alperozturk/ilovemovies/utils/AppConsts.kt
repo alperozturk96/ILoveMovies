@@ -1,4 +1,4 @@
-package com.alperozturk.ilovemovies.helpers
+package com.alperozturk.ilovemovies.utils
 
 object AppConsts {
     const val baseUrl = "https://api.themoviedb.org/3/"

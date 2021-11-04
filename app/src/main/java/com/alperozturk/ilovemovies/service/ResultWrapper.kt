@@ -1,4 +1,4 @@
-package com.alperozturk.ilovemovies.networklayer
+package com.alperozturk.ilovemovies.service
 
 
 import kotlinx.coroutines.Dispatchers

@@ -1,20 +1,14 @@
 package com.alperozturk.ilovemovies.adapters
 
 import android.annotation.SuppressLint
-import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.alperozturk.ilovemovies.R
 import com.alperozturk.ilovemovies.databinding.PopularMoviesListItemBinding
-import com.alperozturk.ilovemovies.helpers.AppConsts
-import com.alperozturk.ilovemovies.helpers.ViewHolder.listen
-import com.alperozturk.ilovemovies.models.response.PopularMoviesBaseM
-import com.alperozturk.ilovemovies.models.response.PopularMoviesM
+import com.alperozturk.ilovemovies.utils.AppConsts
+import com.alperozturk.ilovemovies.model.response.PopularMoviesM
 import com.bumptech.glide.Glide
 
 class PopularMoviesAdapter : PagingDataAdapter<PopularMoviesM, PopularMoviesAdapter.ViewHolder>(DiffUtilCallBack) {

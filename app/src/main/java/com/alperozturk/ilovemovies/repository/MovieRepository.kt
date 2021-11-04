@@ -1,14 +1,14 @@
-package com.alperozturk.ilovemovies.repositories
+package com.alperozturk.ilovemovies.repository
 
 import androidx.lifecycle.LiveData;
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData;
 import androidx.paging.liveData
-import com.alperozturk.ilovemovies.core.paging.MoviePagingSource
+import com.alperozturk.ilovemovies.view.paging.MoviePagingSource
 
-import com.alperozturk.ilovemovies.models.response.PopularMoviesM;
-import com.alperozturk.ilovemovies.networklayer.IRest;
+import com.alperozturk.ilovemovies.model.response.PopularMoviesM;
+import com.alperozturk.ilovemovies.service.IRest;
 
 //This repository is bridge between ViewModel and PagingSource. Therefore we don't need to worry about modularity of project.
 interface MovieRepository {

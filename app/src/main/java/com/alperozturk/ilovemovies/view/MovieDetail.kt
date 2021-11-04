@@ -1,4 +1,4 @@
-package com.alperozturk.ilovemovies.core
+package com.alperozturk.ilovemovies.view
 
 import android.os.Bundle
 import android.util.Log
@@ -6,14 +6,14 @@ import android.view.View
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.ViewModelProvider
 import com.alperozturk.ilovemovies.adapters.CreditsAdapter
-import com.alperozturk.ilovemovies.core.MainActivity.Companion.hideProgressBar
-import com.alperozturk.ilovemovies.core.MainActivity.Companion.showProgressBar
+import com.alperozturk.ilovemovies.view.MainActivity.Companion.hideProgressBar
+import com.alperozturk.ilovemovies.view.MainActivity.Companion.showProgressBar
 import com.alperozturk.ilovemovies.databinding.MovieDetailFragmentBinding
-import com.alperozturk.ilovemovies.helpers.AppConsts
-import com.alperozturk.ilovemovies.models.response.MovieCreditsBaseM
-import com.alperozturk.ilovemovies.models.response.MovieDetailBaseM
-import com.alperozturk.ilovemovies.networklayer.ResultWrapper
-import com.alperozturk.ilovemovies.viewmodels.MovieDetailVM
+import com.alperozturk.ilovemovies.utils.AppConsts
+import com.alperozturk.ilovemovies.model.response.MovieCreditsBaseM
+import com.alperozturk.ilovemovies.model.response.MovieDetailBaseM
+import com.alperozturk.ilovemovies.service.ResultWrapper
+import com.alperozturk.ilovemovies.viewmodel.MovieDetailVM
 
 import com.bumptech.glide.Glide
 

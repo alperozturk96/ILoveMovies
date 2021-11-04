@@ -1,12 +1,11 @@
-package com.alperozturk.ilovemovies.core.paging
+package com.alperozturk.ilovemovies.view.paging
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.alperozturk.ilovemovies.core.BaseFragment
-import com.alperozturk.ilovemovies.models.response.PopularMoviesM
-import com.alperozturk.ilovemovies.networklayer.APICall
-import com.alperozturk.ilovemovies.networklayer.IRest
-import com.alperozturk.ilovemovies.networklayer.ResultWrapper
+import com.alperozturk.ilovemovies.model.response.PopularMoviesM
+import com.alperozturk.ilovemovies.service.APICall
+import com.alperozturk.ilovemovies.service.IRest
+import com.alperozturk.ilovemovies.service.ResultWrapper
 
 //This class is responsible for fetching data page by page.
 

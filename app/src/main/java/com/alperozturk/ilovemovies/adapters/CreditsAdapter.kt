@@ -5,8 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.alperozturk.ilovemovies.databinding.CreditsItemBinding
-import com.alperozturk.ilovemovies.helpers.ViewHolder.listen
-import com.alperozturk.ilovemovies.models.response.MovieCreditsBaseM
+import com.alperozturk.ilovemovies.model.response.MovieCreditsBaseM
 
 class CreditsAdapter(private var credits: MovieCreditsBaseM, private var isCast: Boolean) :
     RecyclerView.Adapter<CreditsAdapter.MyViewHolder>() {

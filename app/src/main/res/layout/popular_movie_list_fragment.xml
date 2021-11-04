@@ -4,14 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".core.PopularMoviesList">
+    tools:context=".view.PopularMoviesList">
 
     <LinearLayout
         android:orientation="vertical"
         android:padding="10dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".core.PopularMoviesActivity">
+        tools:context=".view.PopularMoviesActivity">
 
         <TextView
             android:id="@+id/header_title"

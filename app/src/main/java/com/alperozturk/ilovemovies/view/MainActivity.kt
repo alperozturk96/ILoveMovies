@@ -1,4 +1,4 @@
-package com.alperozturk.ilovemovies.core
+package com.alperozturk.ilovemovies.view
 
 import android.app.Dialog
 import android.os.Bundle

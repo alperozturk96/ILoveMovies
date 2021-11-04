@@ -1,6 +1,6 @@
-package com.alperozturk.ilovemovies.networklayer
+package com.alperozturk.ilovemovies.service
 
-import com.alperozturk.ilovemovies.helpers.AppConsts
+import com.alperozturk.ilovemovies.utils.AppConsts
 import retrofit2.Retrofit
 import okhttp3.logging.HttpLoggingInterceptor
 

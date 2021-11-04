@@ -1,4 +1,4 @@
-package com.alperozturk.ilovemovies.core
+package com.alperozturk.ilovemovies.view
 
 import android.os.Bundle
 import android.view.View
@@ -8,10 +8,10 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.alperozturk.ilovemovies.R
 import com.alperozturk.ilovemovies.adapters.PopularMoviesAdapter
-import com.alperozturk.ilovemovies.viewmodels.PopularMoviesVM
-import com.alperozturk.ilovemovies.repositories.MovieRepositoryImpl
+import com.alperozturk.ilovemovies.viewmodel.PopularMoviesVM
+import com.alperozturk.ilovemovies.repository.MovieRepositoryImpl
 import com.alperozturk.ilovemovies.databinding.PopularMovieListFragmentBinding
-import com.alperozturk.ilovemovies.helpers.Coroutines
+import com.alperozturk.ilovemovies.utils.Coroutines
 
 
 class PopularMoviesList : BaseFragment<PopularMovieListFragmentBinding,PopularMoviesVM>(PopularMovieListFragmentBinding::inflate){

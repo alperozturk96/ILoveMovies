@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/movieDetail"
-        android:name="com.alperozturk.ilovemovies.core.MovieDetail"
+        android:name="com.alperozturk.ilovemovies.view.MovieDetail"
         android:label="movie_detail_fragment"
         tools:layout="@layout/movie_detail_fragment">
 
@@ -18,7 +18,7 @@
 
     <fragment
         android:id="@+id/moviePList"
-        android:name="com.alperozturk.ilovemovies.core.PopularMoviesList"
+        android:name="com.alperozturk.ilovemovies.view.PopularMoviesList"
         android:label="fragment_movie_p_list"
         tools:layout="@layout/popular_movie_list_fragment" >
         <action

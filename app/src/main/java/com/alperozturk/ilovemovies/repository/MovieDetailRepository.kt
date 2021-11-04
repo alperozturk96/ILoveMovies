@@ -1,16 +1,15 @@
-package com.alperozturk.ilovemovies.repositories
+package com.alperozturk.ilovemovies.repository
 
 import android.util.Log
-import androidx.databinding.ObservableField
 
 import androidx.lifecycle.MutableLiveData
-import com.alperozturk.ilovemovies.models.response.MovieCreditsBaseM
-import com.alperozturk.ilovemovies.networklayer.ResultWrapper
+import com.alperozturk.ilovemovies.model.response.MovieCreditsBaseM
+import com.alperozturk.ilovemovies.service.ResultWrapper
 
 import io.reactivex.rxjava3.schedulers.Schedulers
 
-import com.alperozturk.ilovemovies.models.response.MovieDetailBaseM
-import com.alperozturk.ilovemovies.networklayer.IRest
+import com.alperozturk.ilovemovies.model.response.MovieDetailBaseM
+import com.alperozturk.ilovemovies.service.IRest
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.Disposable
 

@@ -1,4 +1,4 @@
-package com.alperozturk.ilovemovies.core
+package com.alperozturk.ilovemovies.view
 
 
 import android.os.Bundle
@@ -9,8 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
-import com.alperozturk.ilovemovies.networklayer.ApiClient
-import com.alperozturk.ilovemovies.networklayer.IRest
+import com.alperozturk.ilovemovies.service.ApiClient
+import com.alperozturk.ilovemovies.service.IRest
 import retrofit2.Retrofit
 
 
