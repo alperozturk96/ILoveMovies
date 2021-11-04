@@ -6,27 +6,19 @@ import android.view.View
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.ViewModelProvider
 import com.alperozturk.ilovemovies.adapters.CreditsAdapter
+import com.alperozturk.ilovemovies.core.MainActivity.Companion.hideProgressBar
+import com.alperozturk.ilovemovies.core.MainActivity.Companion.showProgressBar
 import com.alperozturk.ilovemovies.databinding.MovieDetailFragmentBinding
 import com.alperozturk.ilovemovies.helpers.AppConsts
-import com.alperozturk.ilovemovies.helpers.Coroutines
 import com.alperozturk.ilovemovies.models.response.MovieCreditsBaseM
 import com.alperozturk.ilovemovies.models.response.MovieDetailBaseM
-import com.alperozturk.ilovemovies.networklayer.APICall
 import com.alperozturk.ilovemovies.networklayer.ResultWrapper
 import com.alperozturk.ilovemovies.viewmodels.MovieDetailVM
 
 import com.bumptech.glide.Glide
 
 
-class MovieDetail : BaseFragment<MovieDetailFragmentBinding>(MovieDetailFragmentBinding::inflate),LifecycleObserver {
-
-    private lateinit var movieId:String
-
-    private val viewModel: MovieDetailVM by lazy {
-        ViewModelProvider(
-            this,
-            createWithFactory { MovieDetailVM(retroFitClient()) })[MovieDetailVM::class.java]
-    }
+class MovieDetail : BaseFragment<MovieDetailFragmentBinding,MovieDetailVM>(MovieDetailFragmentBinding::inflate),LifecycleObserver {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -36,11 +28,30 @@ class MovieDetail : BaseFragment<MovieDetailFragmentBinding>(MovieDetailFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        movieId = requireArguments().getString("movieId")!!
+        if (arguments != null)
+        {
+            val movieId = requireArguments().getString("movieId") ?: return
+            viewModel.movieId = movieId
+        }
+    }
+
+    override fun getVM(): MovieDetailVM {
+        return ViewModelProvider(this, createWithFactory { MovieDetailVM(service()) })[MovieDetailVM::class.java]
     }
 
     private fun observeLiveData(){
-        viewModel.movieDetail(movieId).observe(viewLifecycleOwner, {
+        viewModel.loadingIndicator().observe(viewLifecycleOwner,{
+            if (it)
+            {
+                showProgressBar()
+            }
+            else
+            {
+                hideProgressBar()
+            }
+        })
+
+        viewModel.movieDetail().observe(viewLifecycleOwner, {
             when(it) {
                 is ResultWrapper.Success -> {
                     prepareMovieDetails(it.value)
@@ -51,7 +62,7 @@ class MovieDetail : BaseFragment<MovieDetailFragmentBinding>(MovieDetailFragment
             }
         })
 
-        viewModel.movieCredits(movieId).observe(viewLifecycleOwner, {
+        viewModel.movieCredits().observe(viewLifecycleOwner, {
             when(it) {
                 is ResultWrapper.Success -> {
                     prepareMovieCredits(it.value)

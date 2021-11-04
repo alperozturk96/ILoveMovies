@@ -17,7 +17,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 object ApiClient {
     private var retrofit: Retrofit? = null
 
-
     //This functions provide to us watch network request from log.
     private fun httpClient(): OkHttpClient.Builder {
         val httpClient = OkHttpClient.Builder()

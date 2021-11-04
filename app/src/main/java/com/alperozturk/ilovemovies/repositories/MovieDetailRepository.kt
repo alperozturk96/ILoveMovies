@@ -1,6 +1,8 @@
 package com.alperozturk.ilovemovies.repositories
 
 import android.util.Log
+import androidx.databinding.ObservableField
+
 import androidx.lifecycle.MutableLiveData
 import com.alperozturk.ilovemovies.models.response.MovieCreditsBaseM
 import com.alperozturk.ilovemovies.networklayer.ResultWrapper
@@ -13,18 +15,22 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.Disposable
 
 
+
 class MovieDetailRepository(private val service: IRest) {
 
-    var movieDetailDisposable: Disposable? = null
-    var movieCreditsDisposable: Disposable? = null
+    private var movieDetailDisposable: Disposable? = null
+    private var movieCreditsDisposable: Disposable? = null
+    private var loadingIndicator = MutableLiveData<Boolean>()
 
     fun getMovieDetail(movieId: String): MutableLiveData<ResultWrapper<MovieDetailBaseM>> {
         val liveData = MutableLiveData<ResultWrapper<MovieDetailBaseM>>()
 
         movieDetailDisposable = service.getMovieDetail(movieId)
+            .doOnSubscribe { loadingIndicator.postValue(true) }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .map { response -> response }
+            .doOnTerminate { loadingIndicator.postValue(false) }
             .subscribe({ result -> liveData.postValue(ResultWrapper.Success(result)) }
             ) { error ->
                 liveData.value = ResultWrapper.GenericError(error)
@@ -38,8 +44,10 @@ class MovieDetailRepository(private val service: IRest) {
         val liveData = MutableLiveData<ResultWrapper<MovieCreditsBaseM>>()
 
         movieCreditsDisposable = service.getMovieCredits(movieId)
+            .doOnSubscribe { loadingIndicator.postValue(true) }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
+            .doOnTerminate { loadingIndicator.postValue(false) }
             .map { response -> response }
             .subscribe({ result -> liveData.postValue(ResultWrapper.Success(result)) }
             ) { error ->
@@ -48,6 +56,10 @@ class MovieDetailRepository(private val service: IRest) {
             }
 
         return liveData
+    }
+
+    fun isLoading(): MutableLiveData<Boolean>{
+        return loadingIndicator
     }
 
     fun finish(){

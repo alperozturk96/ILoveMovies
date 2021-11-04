@@ -23,7 +23,4 @@ interface IRest {
     @GET("movie/{movie_id}/credits?api_key="+AppConsts.apiKey+"language=en-US")
     fun getMovieCredits(@Path("movie_id") movieId: String): Single<MovieCreditsBaseM>
 
-
-
-
 }

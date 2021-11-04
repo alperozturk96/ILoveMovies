@@ -14,15 +14,10 @@ import com.alperozturk.ilovemovies.databinding.PopularMovieListFragmentBinding
 import com.alperozturk.ilovemovies.helpers.Coroutines
 
 
-class PopularMoviesList : BaseFragment<PopularMovieListFragmentBinding>(PopularMovieListFragmentBinding::inflate){
+class PopularMoviesList : BaseFragment<PopularMovieListFragmentBinding,PopularMoviesVM>(PopularMovieListFragmentBinding::inflate){
 
-    var navController:NavController? = null
+    private var navController:NavController? = null
     private val adapter = PopularMoviesAdapter()
-
-    private val viewModel: PopularMoviesVM by lazy {
-        ViewModelProvider(this, createWithFactory { PopularMoviesVM(repository = MovieRepositoryImpl(retroFitClient())) }).get(
-            PopularMoviesVM::class.java)
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -32,9 +27,14 @@ class PopularMoviesList : BaseFragment<PopularMovieListFragmentBinding>(PopularM
         observeLiveData()
     }
 
+    override fun getVM(): PopularMoviesVM {
+        return ViewModelProvider(this, createWithFactory { PopularMoviesVM(repository = MovieRepositoryImpl(service())) }).get(
+            PopularMoviesVM::class.java)
+    }
+
     private fun openMovieDetailPage(id:String){
         val bundle = bundleOf("movieId" to id)
-        navController!!.navigate(R.id.action_moviePList_to_movieDetail,bundle)
+        navController?.navigate(R.id.action_moviePList_to_movieDetail,bundle)
     }
 
     private fun initAdapter(){

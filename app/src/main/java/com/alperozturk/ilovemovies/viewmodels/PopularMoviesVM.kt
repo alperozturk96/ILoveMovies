@@ -12,7 +12,7 @@ class PopularMoviesVM(private val repository: MovieRepository) : ViewModel() {
 
     suspend fun getPopularMoviesList(): LiveData<PagingData<PopularMoviesM>> {
         val response = repository.getPopularMovieList().cachedIn(viewModelScope)
-        _movieList.value = response.value
+        _movieList.postValue(response.value)
         return response
     }
 }
