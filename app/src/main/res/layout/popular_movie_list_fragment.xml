@@ -21,14 +21,22 @@
             android:textColor="@color/black"
             android:textStyle="bold"
             android:gravity="center"
-            android:text="Popular Movies" />
+            android:text="@string/main_screen_title" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_marginTop="20dp"
-            android:id="@+id/popularMovieListRecV"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/refresh_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_marginTop="20dp"
+                android:id="@+id/popularMovieListRecV"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
 
     </LinearLayout>
 

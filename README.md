@@ -27,6 +27,7 @@ https://user-images.githubusercontent.com/67455295/136707290-eb9406b9-bd89-43af-
 - Retrofit
 - Logging Interceptor
 - Navigation UI
+- RxJava3 
 - Coroutines
 - Glide
 - Paging v3

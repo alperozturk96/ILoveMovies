@@ -1,10 +1,10 @@
 package com.alperozturk.ilovemovies.service
 
 
-import com.alperozturk.ilovemovies.utils.AppConsts
 import com.alperozturk.ilovemovies.model.response.MovieCreditsBaseM
 import com.alperozturk.ilovemovies.model.response.MovieDetailBaseM
 import com.alperozturk.ilovemovies.model.response.PopularMoviesBaseM
+import com.alperozturk.ilovemovies.utils.AppConsts
 import io.reactivex.rxjava3.core.Single
 import retrofit2.http.GET
 import retrofit2.http.Path

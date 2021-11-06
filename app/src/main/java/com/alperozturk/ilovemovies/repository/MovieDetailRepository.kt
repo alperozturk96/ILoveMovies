@@ -1,18 +1,14 @@
 package com.alperozturk.ilovemovies.repository
 
 import android.util.Log
-
 import androidx.lifecycle.MutableLiveData
 import com.alperozturk.ilovemovies.model.response.MovieCreditsBaseM
-import com.alperozturk.ilovemovies.service.ResultWrapper
-
-import io.reactivex.rxjava3.schedulers.Schedulers
-
 import com.alperozturk.ilovemovies.model.response.MovieDetailBaseM
 import com.alperozturk.ilovemovies.service.IRest
+import com.alperozturk.ilovemovies.service.ResultWrapper
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.Disposable
-
+import io.reactivex.rxjava3.schedulers.Schedulers
 
 
 class MovieDetailRepository(private val service: IRest) {

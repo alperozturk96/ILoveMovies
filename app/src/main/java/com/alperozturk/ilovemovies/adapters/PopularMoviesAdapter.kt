@@ -7,8 +7,8 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.alperozturk.ilovemovies.databinding.PopularMoviesListItemBinding
-import com.alperozturk.ilovemovies.utils.AppConsts
 import com.alperozturk.ilovemovies.model.response.PopularMoviesM
+import com.alperozturk.ilovemovies.utils.AppConsts
 import com.bumptech.glide.Glide
 
 class PopularMoviesAdapter : PagingDataAdapter<PopularMoviesM, PopularMoviesAdapter.ViewHolder>(DiffUtilCallBack) {
@@ -48,8 +48,6 @@ class PopularMoviesAdapter : PagingDataAdapter<PopularMoviesM, PopularMoviesAdap
                 onItemClick?.invoke(getItem(bindingAdapterPosition)!!)
             }
         }
-
-
     }
 
     object DiffUtilCallBack : DiffUtil.ItemCallback<PopularMoviesM>() {

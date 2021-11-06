@@ -16,8 +16,6 @@ import retrofit2.Retrofit
 
 typealias Inflate<T> = (LayoutInflater, ViewGroup?, Boolean) -> T
 
-//Due to using navigation ui library we need to have base abstract fragment for using viewbindings all over the app.
-//And some needed functions all over the app.
 abstract class BaseFragment<VB: ViewBinding,VM: ViewModel>(private val inflate: Inflate<VB>) : Fragment() {
 
     companion object {

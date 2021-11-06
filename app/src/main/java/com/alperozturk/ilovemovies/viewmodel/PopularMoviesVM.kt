@@ -1,10 +1,13 @@
 package com.alperozturk.ilovemovies.viewmodel
 
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.alperozturk.ilovemovies.repository.MovieRepository
 import com.alperozturk.ilovemovies.model.response.PopularMoviesM
+import com.alperozturk.ilovemovies.repository.MovieRepository
 
 class PopularMoviesVM(private val repository: MovieRepository) : ViewModel() {
 
@@ -15,4 +18,5 @@ class PopularMoviesVM(private val repository: MovieRepository) : ViewModel() {
         _movieList.postValue(response.value)
         return response
     }
+
 }

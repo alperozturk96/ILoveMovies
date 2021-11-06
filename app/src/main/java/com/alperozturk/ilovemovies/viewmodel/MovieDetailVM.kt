@@ -5,10 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.alperozturk.ilovemovies.model.response.MovieCreditsBaseM
 import com.alperozturk.ilovemovies.model.response.MovieDetailBaseM
+import com.alperozturk.ilovemovies.repository.MovieDetailRepository
 import com.alperozturk.ilovemovies.service.IRest
 import com.alperozturk.ilovemovies.service.ResultWrapper
-
-import com.alperozturk.ilovemovies.repository.MovieDetailRepository
 
 
 class MovieDetailVM(service:IRest) : ViewModel() {

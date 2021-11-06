@@ -6,15 +6,17 @@ import androidx.core.os.bundleOf
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.alperozturk.ilovemovies.R
 import com.alperozturk.ilovemovies.adapters.PopularMoviesAdapter
-import com.alperozturk.ilovemovies.viewmodel.PopularMoviesVM
-import com.alperozturk.ilovemovies.repository.MovieRepositoryImpl
 import com.alperozturk.ilovemovies.databinding.PopularMovieListFragmentBinding
+import com.alperozturk.ilovemovies.repository.MovieRepositoryImpl
 import com.alperozturk.ilovemovies.utils.Coroutines
+import com.alperozturk.ilovemovies.viewmodel.PopularMoviesVM
 
 
-class PopularMoviesList : BaseFragment<PopularMovieListFragmentBinding,PopularMoviesVM>(PopularMovieListFragmentBinding::inflate){
+class PopularMoviesList : BaseFragment<PopularMovieListFragmentBinding,PopularMoviesVM>(PopularMovieListFragmentBinding::inflate),
+    SwipeRefreshLayout.OnRefreshListener{
 
     private var navController:NavController? = null
     private val adapter = PopularMoviesAdapter()
@@ -23,6 +25,7 @@ class PopularMoviesList : BaseFragment<PopularMovieListFragmentBinding,PopularMo
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
 
+        initOnClickListeners()
         initAdapter()
         observeLiveData()
     }
@@ -30,6 +33,10 @@ class PopularMoviesList : BaseFragment<PopularMovieListFragmentBinding,PopularMo
     override fun getVM(): PopularMoviesVM {
         return ViewModelProvider(this, createWithFactory { PopularMoviesVM(repository = MovieRepositoryImpl(service())) }).get(
             PopularMoviesVM::class.java)
+    }
+
+    private fun initOnClickListeners(){
+        binding.refreshLayout.setOnRefreshListener(this);
     }
 
     private fun openMovieDetailPage(id:String){
@@ -51,6 +58,11 @@ class PopularMoviesList : BaseFragment<PopularMovieListFragmentBinding,PopularMo
                 adapter.submitData(lifecycle, it)
             })
         }
+    }
+
+    override fun onRefresh() {
+        observeLiveData()
+        binding.refreshLayout.isRefreshing = false
     }
 
 }

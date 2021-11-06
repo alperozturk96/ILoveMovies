@@ -1,16 +1,14 @@
 package com.alperozturk.ilovemovies.service
 
 import com.alperozturk.ilovemovies.utils.AppConsts
-import retrofit2.Retrofit
-import okhttp3.logging.HttpLoggingInterceptor
-
-import okhttp3.OkHttpClient
-
 import okhttp3.Interceptor
+import okhttp3.OkHttpClient
 import okhttp3.Request
+import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Retrofit
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
-import java.util.concurrent.TimeUnit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 
 
 //Object acts like singleton class and its suitable for Retrofit Networking Library.

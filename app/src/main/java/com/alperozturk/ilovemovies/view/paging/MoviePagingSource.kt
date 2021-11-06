@@ -7,8 +7,6 @@ import com.alperozturk.ilovemovies.service.APICall
 import com.alperozturk.ilovemovies.service.IRest
 import com.alperozturk.ilovemovies.service.ResultWrapper
 
-//This class is responsible for fetching data page by page.
-
 class MoviePagingSource(private val service: IRest) : PagingSource<Int, PopularMoviesM>() {
     private fun toListResponse(json: List<PopularMoviesM>?): List<PopularMoviesM> {
         with(json) {

@@ -6,15 +6,13 @@ import android.view.View
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.ViewModelProvider
 import com.alperozturk.ilovemovies.adapters.CreditsAdapter
-import com.alperozturk.ilovemovies.view.MainActivity.Companion.hideProgressBar
-import com.alperozturk.ilovemovies.view.MainActivity.Companion.showProgressBar
 import com.alperozturk.ilovemovies.databinding.MovieDetailFragmentBinding
-import com.alperozturk.ilovemovies.utils.AppConsts
 import com.alperozturk.ilovemovies.model.response.MovieCreditsBaseM
 import com.alperozturk.ilovemovies.model.response.MovieDetailBaseM
 import com.alperozturk.ilovemovies.service.ResultWrapper
+import com.alperozturk.ilovemovies.utils.AppConsts
+import com.alperozturk.ilovemovies.utils.manager.ProgressBarManager
 import com.alperozturk.ilovemovies.viewmodel.MovieDetailVM
-
 import com.bumptech.glide.Glide
 
 
@@ -43,11 +41,11 @@ class MovieDetail : BaseFragment<MovieDetailFragmentBinding,MovieDetailVM>(Movie
         viewModel.loadingIndicator().observe(viewLifecycleOwner,{
             if (it)
             {
-                showProgressBar()
+                ProgressBarManager.showProgressBar()
             }
             else
             {
-                hideProgressBar()
+                ProgressBarManager.hideProgressBar()
             }
         })
 
